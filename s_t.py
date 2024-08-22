@@ -15,11 +15,11 @@ from gtts import gTTS
 from googletrans import Translator
 
 
-st.title("TRADUCTOR.")
-st.subheader("Escucho lo que quieres traducir.")
+st.title("TRADUCTOR")
+st.subheader("¡Escucho todo lo que quieres traducir!")
 
 
-image = Image.open('OIG7.jpg')
+image = Image.open('Trad.jpg')
 
 st.image(image,width=300)
 with st.sidebar:
@@ -29,7 +29,7 @@ with st.sidebar:
                  " la configuración de lenguaje que necesites.")
 
 
-st.write("Toca el Botón y habla lo que quires traducir")
+st.write("Haz clic en el botón y di o que quieras traducir")
 
 stt_button = Button(label=" Escuchar  🎤", width=300,  height=50)
 
@@ -73,7 +73,7 @@ if result:
     text = str(result.get("GET_TEXT"))
     in_lang = st.selectbox(
         "Selecciona el lenguaje de Entrada",
-        ("Inglés", "Español", "Bengali", "Coreano", "Mandarín", "Japonés"),
+        ("Inglés", "Español", "Bengali", "Coreano", "Mandarín", "Japonés", "Italiano"),
     )
     if in_lang == "Inglés":
         input_language = "en"
@@ -87,10 +87,12 @@ if result:
         input_language = "zh-cn"
     elif in_lang == "Japonés":
         input_language = "ja"
+    elif in_lang == "Italiano":
+        input_language = "it"
     
     out_lang = st.selectbox(
         "Selecciona el lenguaje de salida",
-        ("Inglés", "Español", "Bengali", "Coreano", "Mandarín", "Japonés"),
+        ("Inglés", "Español", "Bengali", "Coreano", "Mandarín", "Japonés", "Italiano"),
     )
     if out_lang == "Inglés":
         output_language = "en"
@@ -104,6 +106,8 @@ if result:
         output_language = "zh-cn"
     elif out_lang == "Japonés":
         output_language = "ja"
+    elif in_lang == "Italiano":
+        input_language = "it"
     
     english_accent = st.selectbox(
         "Selecciona el acento",
