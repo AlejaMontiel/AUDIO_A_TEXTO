@@ -29,7 +29,7 @@ with st.sidebar:
                  " la configuración de lenguaje que necesites.")
 
 
-st.write("Haz clic en el botón y di o que quieras traducir")
+st.write("Haz clic en el botón y di lo que quieras traducir")
 
 stt_button = Button(label=" Escuchar  🎤", width=300,  height=50)
 
