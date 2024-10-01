@@ -14,14 +14,14 @@ st.markdown("""
 <style>
     .title {
         text-align: center;
-        color: #1E88E5;
+        color: #ef7226;
         font-size: 48px;
         font-family: 'Arial', sans-serif;
         margin: 20px 0;
     }
     .subheader {
         text-align: center;
-        color: #1565C0;
+        color: #f97728;
         font-size: 24px;
         font-family: 'Arial', sans-serif;
         margin-bottom: 20px;
