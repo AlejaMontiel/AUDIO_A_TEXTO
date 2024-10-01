@@ -12,33 +12,25 @@ from PIL import Image
 # Configuración de estilo CSS para la apariencia
 st.markdown("""
 <style>
-    body {
-        background-color: #f0f4f8;
-        font-family: 'Arial', sans-serif;
-    }
     .title {
         text-align: center;
         color: #1E88E5;
         font-size: 48px;
+        font-family: 'Arial', sans-serif;
         margin: 20px 0;
     }
     .subheader {
         text-align: center;
         color: #1565C0;
         font-size: 24px;
+        font-family: 'Arial', sans-serif;
         margin-bottom: 20px;
     }
     .sidebar .sidebar-content {
         background-color: #f0f2f5;
         border-radius: 10px;
-        padding: 20px;
+        padding: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-    .instruction {
-        margin-bottom: 20px;
-        font-size: 18px;
-        color: #333;
-        line-height: 1.5;
     }
     .fable {
         border: 2px solid #1E88E5;
@@ -67,16 +59,9 @@ st.markdown("""
         cursor: pointer;
         font-size: 16px;
         margin-top: 10px;
-        transition: background-color 0.3s;
     }
     .button:hover {
         background-color: #1565C0;
-    }
-    .footer {
-        text-align: center;
-        margin-top: 40px;
-        color: #777;
-        font-size: 14px;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -229,8 +214,5 @@ if result and "GET_TEXT" in result:
                     print("Archivo eliminado:", f)
 
     remove_files(7)
-
-# Pie de página con información adicional
-st.markdown("<div class='footer'>Desarrollado por [Tu Nombre] | © 2024</div>", unsafe_allow_html=True)
 
 
