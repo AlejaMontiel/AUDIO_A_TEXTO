@@ -9,7 +9,6 @@ from bokeh.models import CustomJS
 from streamlit_bokeh_events import streamlit_bokeh_events
 from PIL import Image
 
-# Configuración de estilo CSS para la apariencia
 st.markdown("""
 <style>
     .title {
@@ -66,28 +65,22 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Título principal
 st.markdown("<h1 class='title'>TRADUCTOR</h1>", unsafe_allow_html=True)
 st.markdown("<h2 class='subheader'>¡Escucho todo lo que quieres traducir!</h2>", unsafe_allow_html=True)
 
-# Imagen de encabezado
 image = Image.open('Trad.jpg')
 st.image(image, width=300)
 
-# Sidebar con instrucciones
 with st.sidebar:
     st.subheader("Instrucciones")
     st.write("Presiona el botón, cuando escuches la señal, "
              "habla lo que quieres traducir. Luego selecciona "   
              "la configuración de lenguaje que necesites.")
 
-# Interfaz principal
 st.write("Haz clic en el botón y di lo que quieras traducir.")
 
-# Botón de reconocimiento de voz
 stt_button = Button(label="Escuchar 🎤", width=300, height=50)
 
-# Configuración de reconocimiento de voz
 stt_button.js_on_event("button_click", CustomJS(code="""
     var recognition = new webkitSpeechRecognition();
     recognition.continuous = true;
@@ -107,7 +100,6 @@ stt_button.js_on_event("button_click", CustomJS(code="""
     recognition.start();
 """))
 
-# Captura del resultado del reconocimiento de voz
 result = streamlit_bokeh_events(
     stt_button,
     events="GET_TEXT",
@@ -116,20 +108,16 @@ result = streamlit_bokeh_events(
     override_height=75,
     debounce_time=0)
 
-# Si se recibe texto del reconocimiento
 if result and "GET_TEXT" in result:
     text = result.get("GET_TEXT")
     st.write(f"Texto capturado: **{text}**")
 
-    # Crear directorio temporal si no existe
     os.makedirs("temp", exist_ok=True)
 
-    # Configuración del traductor y selección de idiomas
     translator = Translator()
 
     st.title("Texto a Audio")
 
-    # Selección de idioma de entrada
     in_lang = st.selectbox(
         "Selecciona el lenguaje de Entrada",
         ("Inglés", "Español", "Bengali", "Coreano", "Mandarín", "Japonés", "Italiano"),
@@ -146,14 +134,12 @@ if result and "GET_TEXT" in result:
     }
     input_language = lang_map.get(in_lang)
 
-    # Selección de idioma de salida
     out_lang = st.selectbox(
         "Selecciona el lenguaje de salida",
         ("Inglés", "Español", "Bengali", "Coreano", "Mandarín", "Japonés", "Italiano"),
     )
     output_language = lang_map.get(out_lang)
 
-    # Selección de acento
     english_accent = st.selectbox(
         "Selecciona el acento",
         (
@@ -180,7 +166,6 @@ if result and "GET_TEXT" in result:
     }
     tld = tld_map.get(english_accent)
 
-    # Función para traducir y convertir texto a audio
     def text_to_speech(input_language, output_language, text, tld):
         translation = translator.translate(text, src=input_language, dest=output_language)
         trans_text = translation.text
@@ -202,7 +187,6 @@ if result and "GET_TEXT" in result:
             st.markdown(f"<h2>Texto de salida:</h2>", unsafe_allow_html=True)
             st.write(output_text)
 
-    # Función para eliminar archivos temporales
     def remove_files(n):
         mp3_files = glob.glob("temp/*mp3")
         if mp3_files:
